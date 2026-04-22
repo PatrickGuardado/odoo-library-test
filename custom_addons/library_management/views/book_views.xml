@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_library_book_form" model="ir.ui.view">
+        <field name="name">library.book.form</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <form string="Libro">
+                <header>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="author"/>
+                            <field name="isbn"/>
+                        </group>
+                        <group>
+                            <field name="publish_date"/>
+                            <field name="years_since_publish"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_library_book_tree" model="ir.ui.view">
+        <field name="name">library.book.list</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <list string="Libros">
+                <field name="name"/>
+                <field name="author"/>
+                <field name="publish_date"/>
+                <field name="years_since_publish"/>
+                <field name="state" widget="badge" decoration-success="state == 'available'" decoration-warning="state == 'borrowed'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_library_book_search" model="ir.ui.view">
+        <field name="name">library.book.search</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="author"/>
+                <filter string="Disponibles" name="available" domain="[('state', '=', 'available')]"/>
+                <filter string="Prestados" name="borrowed" domain="[('state', '=', 'borrowed')]"/>
+                <separator/>
+                <filter string="Agrupar por Autor" name="group_author" context="{'group_by': 'author'}"/>
+                <filter string="Agrupar por Año" name="group_year" context="{'group_by': 'publish_date'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_library_book" model="ir.actions.act_window">
+        <field name="name">Catálogo de Libros</field>
+        <field name="res_model">library.book</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_library_root" name="Biblioteca" sequence="10"/>
+    <menuitem id="menu_library_books" name="Libros" parent="menu_library_root" action="action_library_book" sequence="10"/>
+</odoo>
