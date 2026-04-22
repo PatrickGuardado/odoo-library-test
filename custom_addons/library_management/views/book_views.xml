@@ -6,6 +6,7 @@
         <field name="arch" type="xml">
             <form string="Libro">
                 <header>
+                    <button name="action_create_loan" type="object" string="Prestar Libro" class="oe_highlight" invisible="state != 'available'"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

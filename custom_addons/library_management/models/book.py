@@ -24,3 +24,14 @@ class LibraryBook(models.Model):
                 record.years_since_publish = date.today().year - record.publish_date.year
             else:
                 record.years_since_publish = 0
+
+    def action_create_loan(self):
+        self.ensure_one() # Asegura que solo estamos operando sobre un libro
+        return {
+            'name': 'Registrar Préstamo',
+            'type': 'ir.actions.act_window',
+            'res_model': 'library.loan',
+            'view_mode': 'form',
+            'context': {'default_book_id': self.id}, # Pre-llena el libro automáticamente
+            'target': 'new', # Abre una ventana emergente
+        }
