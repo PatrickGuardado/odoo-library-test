@@ -70,3 +70,11 @@ class LibraryLoan(models.Model):
                     'email_to': loan.partner_id.email,
                 }
                 self.env['mail.mail'].sudo().create(mail_values).send()
+
+    def action_renew_loan(self):
+        for record in self:
+            if record.state == 'overdue':
+                raise ValidationError("No se puede renovar un préstamo vencido.")
+            # Reiniciamos la fecha de préstamo al día de hoy y lo ponemos activo
+            record.loan_date = fields.Date.context_today(self)
+            record.state = 'active'

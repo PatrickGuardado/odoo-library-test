@@ -17,7 +17,7 @@
     'version': '19.0.1.0.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'contacts'],
+    'depends': ['base', 'contacts', 'portal'],
     
     # always loaded
     
@@ -27,6 +27,7 @@
         'data/cron.xml',
         'views/book_views.xml',
         'views/loan_views.xml',
+        'views/portal_templates.xml',
         'views/views.xml',
         #'views/templates.xml',
     ],
