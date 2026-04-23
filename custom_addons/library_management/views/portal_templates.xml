@@ -2,13 +2,19 @@
 <odoo>
     <template id="portal_my_home_library" name="Mostrar Préstamos" inherit_id="portal.portal_my_home" priority="20">
         <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
-            <t t-call="portal.portal_docs_entry">
-                <t t-set="title">Mis Préstamos</t>
-                <t t-set="url" t-value="'/my/loans'"/>
-                <t t-set="count" t-value="request.env['library.loan'].sudo().search_count([('partner_id', '=', request.env.user.partner_id.id)])"/>
-                <t t-set="show_zero" t-value="True"/>
-                <t t-set="bg_color" t-value="'bg-primary'"/>
-            </t>
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <a href="/my/loans" class="card h-100 p-3 text-decoration-none text-reset shadow-sm">
+                    <div class="d-flex align-items-center">
+                        <div class="fs-1 me-3">
+                            📚
+                        </div>
+                        <div>
+                            <h5 class="mb-1">Mis Préstamos</h5>
+                            <div class="text-muted">Consulta y renueva tus libros</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
         </xpath>
     </template>
 

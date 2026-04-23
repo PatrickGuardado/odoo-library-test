@@ -12,8 +12,8 @@
                 <sheet>
                     <group>
                         <field name="partner_id"/>
-                        <!--<field name="book_id" readonly="1"/> <field name="loan_date"/>-->
-                        <field name="book_id"/> <field name="loan_date"/>
+                        <!-- Se añade readonly al campo book_id para evitar cambios después de crear el préstamo -->
+                        <field name="book_id" readonly="1"/> <field name="loan_date"/> 
                         <field name="return_date" readonly="1"/>
                     </group>
                 </sheet>

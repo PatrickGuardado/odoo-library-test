@@ -17,11 +17,12 @@
     'version': '19.0.1.0.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'contacts', 'portal'],
+    'depends': ['base', 'contacts', 'portal', 'point_of_sale'],
     
     # always loaded
     
     'data': [
+        'security/library_security.xml',
         'security/ir.model.access.csv',
         'data/ir_sequence_data.xml',
         'data/cron.xml',
